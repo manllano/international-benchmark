@@ -29,7 +29,7 @@ The notebooks are intentionally kept separate so each stage can be run, checked,
 └── requirements.txt
 ```
 
-The `data/raw/` folder contains the manually prepared input data. The `data/interim/` folder contains retrieved OpenAlex data before final processing. The `data/processed/` folder contains analysis-ready datasets and exported tables.
+The `data/raw/` folder contains the manually prepared input data, for instance using a CRIS export. The `data/interim/` folder contains retrieved OpenAlex data before final processing. The `data/processed/` folder contains analysis-ready datasets and exported tables.
 
 If the notebooks are stored in the repository root rather than a `notebooks/` folder, keep the same `data/` structure and adjust relative paths if needed.
 
@@ -155,22 +155,3 @@ data/processed/global_core_area.csv
 ```
 
 It creates visualizations for topic activity and citation impact over time, comparing the institute core area with the global core area.
-
-## Notes on institution identifiers
-
-OpenAlex institution display names can change or appear in slightly different forms. For that reason, institution-level sorting and grouping should use OpenAlex institution IDs as the stable key. Display names should be used only as labels in tables and figures.
-
-## Notes on open access
-
-The open-access percentage is calculated from the OpenAlex `open_access.is_oa` field as the percentage of works marked as open access within each institution group.
-
-## Notes on citation-normalized percentile
-
-The citation-normalized percentile metric is taken from the OpenAlex `citation_normalized_percentile` field when available. The workflow keeps the percentile value and related top-percentile indicators for downstream table construction.
-
-## Reproducibility
-
-The notebooks are designed to be run in numerical order. Intermediate and processed CSV files are written to disk so that the metrics and figures notebooks do not need to repeat the full OpenAlex retrieval step.
-
-For best results, commit the notebooks and code, but avoid committing large generated datasets unless the repository is intended to archive a fixed analysis snapshot.
-
